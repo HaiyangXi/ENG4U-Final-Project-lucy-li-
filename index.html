@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>The Landlady Analysis | Lucy Li - ENG4U</title>
+<title>The Landlady | Lucy Li - ENG4U Culminating Project</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
@@ -16,10 +17,11 @@
     --white: #EAEAEA;
     --midnight: #0a0e17;
     --glass: rgba(255, 255, 255, 0.05);
-    --rust: #3A4C5A;
+    --rust: #4a5d6a;
     --hall-light: #44FFFF;
-    --text-muted: #a0a0a0;
+    --text-muted: #b0b0b0;
     --nav-height: 70px;
+    --accent-glow: rgba(255, 51, 68, 0.4);
 }
 
 * { box-sizing: border-box; }
@@ -38,357 +40,352 @@ body {
 }
 
 /* ===========================================
-   NAVIGATION (固定顶部切换栏)
+   NAVIGATION
 =========================================== */
 nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--nav-height);
+    top: 0; left: 0; width: 100%; height: var(--nav-height);
     z-index: 1000;
-    background: rgba(5, 5, 5, 0.95);
+    background: rgba(5, 5, 5, 0.98);
     border-bottom: 2px solid var(--blood);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+    gap: 5px;
+    backdrop-filter: blur(15px);
 }
 
 nav a {
     color: var(--white);
     text-decoration: none;
-    font-size: 0.85rem;
-    padding: 8px 15px;
+    font-size: 0.8rem;
+    padding: 10px 12px;
     transition: 0.3s;
-    border: 1px solid transparent;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 nav a:hover, nav a.active-link {
     color: var(--blood);
-    border-color: var(--blood);
     background: rgba(255, 51, 68, 0.1);
 }
 
 /* ===========================================
-   PAGE CONTROL (模块切换逻辑)
+   PAGE CONTROL
 =========================================== */
 .page {
-    display: none; /* 默认隐藏 */
-    padding: calc(var(--nav-height) + 40px) 8% 60px;
+    display: none;
+    padding: calc(var(--nav-height) + 30px) 5% 60px;
     min-height: 100vh;
-    animation: fadeIn 0.5s ease-out;
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeIn 0.6s ease-out forwards;
 }
 
-.page.active {
-    display: block; /* 激活显示 */
-}
+.page.active { display: block; }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 /* ===========================================
-   COMMON COMPONENTS
+   COMPONENTS
 =========================================== */
+.title-area { text-align: center; margin-bottom: 40px; }
+
 h1.glitch-title {
     font-family: 'Creepster', cursive;
-    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-size: clamp(3rem, 8vw, 6rem);
     color: var(--blood);
-    text-align: center;
-    text-shadow: 0 0 20px var(--blood);
-    margin: 20px 0 10px 0;
+    margin: 10px 0;
+    text-shadow: 0 0 25px var(--blood);
 }
 
-.student-badge {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    color: var(--rust);
-    text-transform: uppercase;
-}
-
-.student-badge span {
-    margin: 0 15px;
-    border-bottom: 1px solid var(--rust);
-    padding-bottom: 2px;
-}
-
-.section-title {
-    font-size: 2.2rem;
-    margin-bottom: 40px;
-    border-left: 5px solid var(--blood);
-    padding-left: 20px;
-    color: var(--white);
-    text-transform: uppercase;
-}
-
-.content-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-}
-
-.info-card {
+.student-card {
+    display: inline-flex;
+    gap: 20px;
+    padding: 15px 30px;
     background: var(--glass);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 35px;
-    position: relative;
-    transition: 0.4s;
-}
-
-.info-card:hover {
-    border-color: var(--blood);
-    background: rgba(255, 51, 68, 0.05);
-    box-shadow: 0 0 30px rgba(255, 51, 68, 0.1);
-}
-
-.info-card h3 {
-    color: var(--hall-light);
-    margin-top: 0;
-    font-size: 1.4rem;
-    border-bottom: 1px solid var(--rust);
-    padding-bottom: 10px;
-}
-
-.info-card p, .info-card li {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
+    border: 1px solid var(--blood);
+    border-radius: 50px;
+    margin-bottom: 30px;
+    font-size: 0.85rem;
     color: var(--text-muted);
 }
 
-/* ===========================================
-   3D HALLWAY
-=========================================== */
-.hallway-viewport {
-    perspective: 800px;
-    width: 100%;
-    height: 500px;
-    background: #000;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid var(--blood);
-}
-
-.hallway-art {
-    width: 100%; height: 100%;
-    position: absolute;
-    transform-style: preserve-3d;
-}
-
-.hall-floor {
-    position: absolute; bottom: 0; width: 100%; height: 100%;
-    background: repeating-linear-gradient(90deg, #111 0, #111 40px, #050505 40px, #050505 80px);
-    transform: rotateX(85deg);
-    transform-origin: bottom;
-}
-
-.hall-wall {
-    position: absolute; width: 50%; height: 100%;
-    background: linear-gradient(to bottom, #100, #000);
-}
-.wall-l { transform: rotateY(90deg) translateZ(-400px); left: 0; border-right: 1px solid var(--blood); }
-.wall-r { transform: rotateY(-90deg) translateZ(-400px); right: 0; border-left: 1px solid var(--blood); }
-
-.hall-door {
-    position: absolute; top: 30%; width: 50px; height: 120px;
-    border: 2px solid var(--blood);
-    box-shadow: 0 0 15px var(--blood);
-}
-
-/* ===========================================
-   FOOTER
-=========================================== */
-footer {
-    text-align: center;
+.section-card {
+    background: var(--glass);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 40px;
-    border-top: 1px solid var(--rust);
-    color: var(--rust);
-    font-size: 0.8rem;
-    background: #050505;
+    margin-bottom: 30px;
+    position: relative;
+    border-radius: 4px;
+    transition: 0.3s;
 }
+
+.content-body {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.icon-box {
+    width: 32px; height: 32px;
+    fill: var(--blood);
+    flex-shrink: 0;
+}
+
+/* ===========================================
+   AUTHOR TIMELINE
+=========================================== */
+.timeline { position: relative; max-width: 900px; margin: 50px auto; padding: 20px 0; }
+.timeline::after { content: ''; position: absolute; width: 2px; background: var(--blood); top: 0; bottom: 0; left: 50%; margin-left: -1px; box-shadow: 0 0 10px var(--blood); }
+.timeline-item { padding: 10px 40px; position: relative; background: inherit; width: 50%; }
+.timeline-item::after { content: ''; position: absolute; width: 16px; height: 16px; right: -8px; background-color: var(--black); border: 2px solid var(--blood); top: 15px; border-radius: 50%; z-index: 1; box-shadow: 0 0 10px var(--blood); }
+.left { left: 0; } .right { left: 50%; } .right::after { left: -8px; }
+.timeline-content { padding: 20px; background: var(--glass); border: 1px solid var(--rust); border-radius: 6px; }
+.timeline-content h3 { margin-top: 0; color: var(--hall-light); font-size: 1.2rem; }
+.timeline-icon { width: 24px; height: 24px; fill: var(--blood); margin-bottom: 10px; }
+
+/* ===========================================
+   IMMERSIVE PLOT HALLWAY
+=========================================== */
+.plot-hallway-container {
+    position: relative;
+    width: 100%;
+    min-height: 800px;
+    background: #000;
+    border: 2px solid var(--blood);
+    overflow: hidden;
+    margin: 40px 0;
+}
+.hallway-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; perspective: 1000px; z-index: 1; }
+.hallway-3d { width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; background: linear-gradient(to bottom, #050505, #111); }
+.h-floor { position: absolute; bottom: 0; width: 100%; height: 100%; background: repeating-linear-gradient(90deg, #111 0, #111 50px, #000 50px, #000 100px); transform: rotateX(85deg); transform-origin: bottom; opacity: 0.3; }
+.h-wall-l, .h-wall-r { position: absolute; width: 50%; height: 100%; background: linear-gradient(to bottom, #100 0%, #000 100%); opacity: 0.5; }
+.h-wall-l { transform: rotateY(90deg) translateZ(-500px); left: 0; }
+.h-wall-r { transform: rotateY(-90deg) translateZ(-500px); right: 0; }
+.plot-scroll-area { position: relative; z-index: 10; padding: 50px 10%; display: flex; flex-direction: column; gap: 80px; }
+.plot-step { background: rgba(10, 14, 23, 0.9); border-left: 4px solid var(--blood); padding: 30px; backdrop-filter: blur(10px); max-width: 600px; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.8); }
+.plot-step:nth-child(even) { align-self: flex-end; border-left: none; border-right: 4px solid var(--blood); }
+
+/* ===========================================
+   REFLECTION TEMPLATE
+=========================================== */
+.reflection-container { display: grid; grid-template-columns: 1fr; gap: 25px; margin-top: 30px; }
+.reflection-step { display: grid; grid-template-columns: 80px 1fr; background: var(--glass); border: 1px solid var(--rust); padding: 30px; border-radius: 8px; transition: 0.3s; position: relative; overflow: hidden; }
+.step-number { font-family: 'Creepster', cursive; font-size: 3rem; color: var(--blood); opacity: 0.5; }
+.step-content h3 { margin-top: 0; color: var(--hall-light); font-size: 1.3rem; }
+.comparison-box { margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-left: 3px solid var(--blood); font-size: 0.95rem; font-style: italic; }
+
+@media screen and (max-width: 768px) {
+    .timeline::after { left: 31px; }
+    .timeline-item { width: 100%; padding-left: 70px; }
+    .right { left: 0%; }
+    .reflection-step { grid-template-columns: 1fr; }
+}
+
+footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); font-size: 0.8rem; color: var(--rust); }
+
 </style>
 </head>
 <body>
 
-<nav id="main-nav">
-    <a onclick="showPage('home')" id="link-home">🏠 Home</a>
-    <a onclick="showPage('author')" id="link-author">✒️ Author</a>
-    <a onclick="showPage('plot')" id="link-plot">📜 Plot</a>
-    <a onclick="showPage('analysis')" id="link-analysis">💡 Analysis</a>
-    <a onclick="showPage('hallway')" id="link-hallway">📐 Design</a>
-    <a onclick="showPage('media')" id="link-media">📺 Media</a>
+<nav id="navbar">
+    <a onclick="showPage('home')" id="nav-home">🏠 Home</a>
+    <a onclick="showPage('author')" id="nav-author">🖋️ Author</a>
+    <a onclick="showPage('characters')" id="nav-characters">👤 Character</a>
+    <a onclick="showPage('plots')" id="nav-plots">📜 Plots</a>
+    <a onclick="showPage('analysis')" id="nav-analysis">💡 Analysis</a>
+    <a onclick="showPage('reflection')" id="nav-reflection">✒️ Reflection</a>
+    <a onclick="showPage('visuals')" id="nav-visuals">📺 Visuals</a>
 </nav>
 
 <!-- HOME PAGE -->
 <section id="home" class="page active">
-    <h1 class="glitch-title">THE LANDLADY</h1>
-    
-    <!-- 学生及课程信息 -->
-    <div class="student-badge">
-        <span>Student: Lucy Li</span>
-        <span>Course: ENG4U</span>
-        <span>Teacher: Mr. Ben</span>
+    <div class="title-area">
+        <div class="student-card">
+            <span><strong>LUCY LI</strong></span>
+            <span>|</span>
+            <span>ENG4U</span>
+            <span>|</span>
+            <span>TEACHER: MR. BEN</span>
+        </div>
+        <h1 class="glitch-title">THE LANDLADY</h1>
+        <p style="color: var(--blood); letter-spacing: 5px; font-weight: bold;">CULMINATING PROJECT: LITERARY DEEP DIVE</p>
     </div>
 
-    <div style="text-align: center; margin-bottom: 50px;">
-        <h2 style="font-size: 1.2rem; color: var(--blood); letter-spacing: 5px;">Ultimate Literary & Design Study</h2>
-    </div>
-
-    <div class="info-card" style="max-width: 900px; margin: 0 auto; text-align: center; border-color: var(--blood);">
-        <h3 style="color: var(--blood);">Welcome to the Inn of Irony</h3>
-        <p style="font-size: 1.3rem; font-style: italic;">"Everything was always terribly nice... until it wasn't."</p>
-        <p>This integrated study explores Roald Dahl's terrifying short story through verbose academic analysis and advanced visualization. Use the navigation bar above to switch between modules.</p>
-    </div>
-
-    <div style="margin-top: 50px; padding: 40px; border: 1px dashed var(--rust);">
-        <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 20px;">Story Synopsis</h2>
-        <p style="font-family: 'Playfair Display';">Billy Weaver, a seventeen-year-old on his first business trip, is drawn to a cheap but "deadly" comfortable boarding house in Bath. The landlady seems like a harmless soul, yet she only has two previous guests—both still "residing" there. As Billy drinks his almond-scented tea, he realizes the horrifying cost of her hospitality.</p>
+    <div class="section-card">
+        <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
+            <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            Executive Summary
+        </h2>
+        <div class="content-body">
+            <p>A seventeen-year-old ambitious businessman, Billy Weaver, travels to Bath, England, seeking a cheap and comfortable place to start his new life. Lured by a deceptive sense of hospitality, he ignores the mounting anomalies—stopped clocks, missing guests, and a strange bitter scent—only to be ensnared in a permanent, horrific collection. This project explores the <strong>fragility of innocence</strong> and the <strong>lethal nature of concealed malice</strong>.</p>
+        </div>
     </div>
 </section>
 
 <!-- AUTHOR PAGE -->
 <section id="author" class="page">
-    <h1 class="glitch-title" style="font-size: 3.5rem;">The Architect</h1>
-    <h2 class="section-title">Roald Dahl: Profile</h2>
-    <div class="content-grid">
-        <div class="info-card">
-            <h3>Legacy of Subversion</h3>
-            <p>Roald Dahl (1916–1990) masterfully balances the whimsical with the wicked. His adult fiction often critiques social complacency and the dark side of human nature, using polite domesticity as a mask for pathology.</p>
+    <h1 class="glitch-title" style="font-size: 3.5rem;">The Master of Twists</h1>
+    <div class="section-card">
+        <h2 style="color:var(--hall-light);">Biography: Roald Dahl</h2>
+        <div class="content-body">
+            <p>Roald Dahl was a Norwegian-British author, fighter pilot, and spy. He is best known for blending dark humor with unexpected, often macabre twists in both his children's literature and adult short stories.</p>
         </div>
-        <div class="info-card">
-            <h3>Signature Style</h3>
-            <p>Known for his "economic prose" and shocking final twists. Dahl doesn't rely on gore; instead, he uses <strong>Dramatic Irony</strong> to let the reader's imagination complete the horror.</p>
+    </div>
+    <div class="timeline">
+        <div class="timeline-item left"><div class="timeline-content"><h3>1916: Birth</h3><p>Born in Wales. His strict education later inspired his stories about rebellious children and cruel adults.</p></div></div>
+        <div class="timeline-item right"><div class="timeline-content"><h3>1939: WWII Service</h3><p>Joined the RAF. A crash in Libya left him with severe injuries, which some say triggered his creative writing.</p></div></div>
+        <div class="timeline-item left"><div class="timeline-content"><h3>1959: The Landlady</h3><p>Published in <em>The New Yorker</em>, winning the Edgar Award and defining his "macabre" style.</p></div></div>
+        <div class="timeline-item right"><div class="timeline-content"><h3>1990: Legacy</h3><p>Passed away as one of the world's most successful storytellers, masters of "Static Doom".</p></div></div>
+    </div>
+</section>
+
+<!-- CHARACTERS PAGE -->
+<section id="characters" class="page">
+    <h1 class="glitch-title" style="font-size: 3.5rem;">Character Study</h1>
+    <div class="section-card">
+        <h2 style="color:var(--hall-light);">Billy Weaver: The Complacent Innocent</h2>
+        <div class="content-body">
+            <p>Billy is a polite boy who has just entered society with a "light step." His tragic flaw is his <strong>lack of social experience</strong>. He believes that friendly behavior equals trustworthiness. Despite noticing anomalies (quiet streets, strange odors), he prioritizes social conformity over survival instincts.</p>
+            <p><strong>Symbolism:</strong> Represents the unsuspecting youth facing a predatory society alone for the first time.</p>
+        </div>
+    </div>
+    <div class="section-card">
+        <h2 style="color:var(--hall-light);">The Landlady: The Predatory Host</h2>
+        <div class="content-body">
+            <p>She subverts the "villain" stereotype by appearing gentle and maternal. Her pathology is one of <strong>Absolute Control</strong>. She treats human beings as *objets d'art*, freezing them in time through taxidermy to prevent change or departure.</p>
         </div>
     </div>
 </section>
 
-<!-- PLOT PAGE -->
-<section id="plot" class="page">
-    <h1 class="glitch-title" style="font-size: 3.5rem;">The Mechanics</h1>
-    <h2 class="section-title">Plot & Characters</h2>
-    <div class="content-grid">
-        <div class="info-card">
-            <h3>The Setting: Bath</h3>
-            <p>Bath, historically a city of health and Georgian elegance, serves as a masterfully ironic location. The horror is placed not in a ruin, but in a bastion of civilization and order.</p>
-        </div>
-        <div class="info-card">
-            <h3>The Characters</h3>
-            <p><strong>Mrs. Belloc:</strong> The predator. Her kindness is a performance; her taxidermy is the ultimate act of possessive control.<br>
-            <strong>Billy Weaver:</strong> The naive traveler. His deference to efficiency and politeness overrides his primal survival instincts.</p>
-        </div>
-        <div class="info-card" style="grid-column: 1 / -1;">
-            <h3>The Narrative Arc</h3>
-            <p>From the "compulsion" to enter the house to the realization of the missing guests (Mulholland & Temple), the plot is a tightening noose. The story ends in a state of <strong>Static Doom</strong>, where action is replaced by chilling implication.</p>
+<!-- PLOTS PAGE -->
+<section id="plots" class="page">
+    <h1 class="glitch-title" style="font-size: 3.5rem;">Narrative Path</h1>
+    <div class="plot-hallway-container">
+        <div class="hallway-background"><div class="hallway-3d"><div class="h-floor"></div><div class="h-wall-l"></div><div class="h-wall-r"></div></div></div>
+        <div class="plot-scroll-area">
+            <div class="plot-step"><h3>Setting: The Quiet Bath</h3><p>A peaceful Georgian town that serves as a "trap" disguised as an oasis. The fire and warmth lure Billy into letting his guard down.</p></div>
+            <div class="plot-step"><h3>Raising Action: The Clues</h3><p>The "compulsion" to enter, the bitter almond scent, and the recognition of names in the guestbook create a tightening noose of suspense.</p></div>
+            <div class="plot-step"><h3>Climax: Cognitive Shock</h3><p>The realization that Mulholland and Temple "never left." The scattered clues merge into a terrifying, undeniable truth.</p></div>
+            <div class="plot-step"><h3>Ending: Irreversible Fate</h3><p>Dahl ends abruptly. There is no second chance. Once trust is exploited, the cost is the protagonist's life.</p></div>
         </div>
     </div>
 </section>
 
-<!-- ANALYSIS PAGE -->
+<!-- ANALYSIS PAGE (Expanded) -->
 <section id="analysis" class="page">
-    <h1 class="glitch-title" style="font-size: 3.5rem;">Deep Critique</h1>
-    <h2 class="section-title">Thematic Analysis</h2>
-    <div class="content-grid">
-        <div class="info-card">
-            <h3>Danger in Domesticity</h3>
-            <p>The central theme: Evil hides in plain sight. The fire, the tea, and the pets are instruments of a lethal trap, proving that "comfortable" doesn't mean "safe."</p>
-        </div>
-        <div class="info-card">
-            <h3>Pathology of Possession</h3>
-            <p>Taxidermy symbolizes the Landlady's desire to stop time and freeze perfection. It is a horrific inversion of care—to love something is to preserve it as an inanimate object.</p>
-        </div>
-        <div class="info-card">
-            <h3>Key Symbolism</h3>
-            <ul style="padding-left: 20px;">
-                <li><strong>The Tea:</strong> Corrupted hospitality (Cyanide).</li>
-                <li><strong>The Guest-Book:</strong> A registry of fate and selective collection.</li>
-                <li><strong>Stuffed Pets:</strong> Foreshadowing of Billy's fate.</li>
+    <h1 class="glitch-title" style="font-size: 3.5rem;">Thematic Depth</h1>
+    
+    <!-- 1. CONFLICTS -->
+    <div class="section-card">
+        <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
+            <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+            Conflicts: Man vs. Man & Internal
+        </h2>
+        <div class="content-body">
+            <p>The primary conflict is <strong>Man vs. Man</strong>—the hidden struggle between Billy Weaver and the Landlady. It is a psychological trap where the antagonist holds all the information while the protagonist is blissfully unaware of the fatal threat.</p>
+            <ul>
+                <li><strong>Internal Conflict:</strong> Billy struggles between his primal survival instincts (the strange smell, the empty house) and his over-socialized need to be polite and efficient. He rationalizes away every warning sign to avoid being "rude."</li>
+                <li><strong>Dynamic of Secrecy:</strong> The conflict is driven by the accumulation of clues—the absent tenants, the taxidermy pets, and the familiar names—leading to a climax of "Cognitive Shock" rather than physical violence.</li>
             </ul>
         </div>
     </div>
-</section>
 
-<!-- DESIGN PAGE (Corroded Hallway) -->
-<section id="hallway" class="page">
-    <h1 class="glitch-title" style="font-size: 3.5rem;">Visualization</h1>
-    <h2 class="section-title">The Corroded Hallway</h2>
-    <p style="text-align: center; margin-bottom: 20px; color: var(--text-muted);">A Pure CSS Artistic representation of the Landlady's inescapable trap.</p>
-    
-    <div class="hallway-viewport">
-        <div class="hallway-art">
-            <div class="hall-floor"></div>
-            <div class="hall-wall wall-l">
-                <div class="hall-door" style="left: 100px;"></div>
-                <div class="hall-door" style="left: 300px;"></div>
-            </div>
-            <div class="hall-wall wall-r">
-                <div class="hall-door" style="right: 100px;"></div>
-                <div class="hall-door" style="right: 300px;"></div>
+    <!-- 2. SYMBOLISM -->
+    <div class="section-card">
+        <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
+            <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM5.5 13L2 19h20l-3.5-6h-13z"/></svg>
+            Symbolism: The Artifacts of Doom
+        </h2>
+        <div class="content-body">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
+                <div>
+                    <h4 style="color:var(--blood);">Taxidermy (The Stuffed Pets)</h4>
+                    <p>Symbolizes the Landlady's rejection of life's decay. It represents the "Static State" she desires for all her "pets"—including Billy. It is a symbol of absolute possession and death masquerading as life.</p>
+                </div>
+                <div>
+                    <h4 style="color:var(--blood);">The Tea & Almond Scent</h4>
+                    <p>A Corruption of British Hospitality. The tea is the instrument of execution, laced with cyanide (the bitter almond smell). It symbolizes how danger hides within the most intimate, safe-seeming customs.</p>
+                </div>
+                <div>
+                    <h4 style="color:var(--blood);">The Guest-Book</h4>
+                    <p>A "Ledger of Fate." It proves that Billy's path was predestined. The small number of entries over two years underscores the predatory and selective nature of the Landlady's hobby.</p>
+                </div>
             </div>
         </div>
     </div>
-    
-    <div class="info-card" style="margin-top: 30px;">
-        <p>This 3D space uses CSS <code>perspective</code> and <code>transform-style: preserve-3d</code> to create depth. It mirrors the narrative: a narrow, linear path leading towards a deceptive light, where every door is a potential cell.</p>
+
+    <!-- 3. THEME -->
+    <div class="section-card">
+        <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
+            <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"/></svg>
+            Themes: Appearance vs. Deception
+        </h2>
+        <div class="content-body">
+            <p>The central theme is that <strong>Danger often lies beneath a safe, friendly, and familiar facade</strong>. Dahl breaks the traditional "villain" stereotype to warn that evil is not always identifiable at a glance.</p>
+            <p><strong>The Risk of Blind Trust:</strong> The story serves as a cautionary tale about the lack of critical thinking. Billy’s refusal to question anomalies—despite noticing them—proves that "Trust without judgment is itself a risk." In a world fraught with hidden threats, complacency is a fatal error with irreversible consequences.</p>
+        </div>
     </div>
 </section>
 
-<!-- MEDIA PAGE -->
-<section id="media" class="page">
-    <h1 class="glitch-title" style="font-size: 3.5rem;">Media Dive</h1>
-    <h2 class="section-title">Adaptations & Context</h2>
-    <div class="info-card" style="text-align: center;">
-        <p>Analytical video overview of Dahl's mechanics.</p>
-        <div style="aspect-ratio: 16/9; width: 100%; max-width: 850px; margin: 30px auto; border: 3px solid var(--blood);">
+<!-- REFLECTION PAGE -->
+<section id="reflection" class="page">
+    <h1 class="glitch-title" style="font-size: 3.5rem;">Personal Connection</h1>
+    <div class="section-card">
+        <h2 style="color:var(--hall-light);">Case Study: The Canadian Parallel</h2>
+        <div class="content-body">
+            <p>This story resonated with me as an international student. Alone in Canada, I equated superficial friendliness with security. My experience proved that "politeness is not vigilance."</p>
+        </div>
+    </div>
+    <div class="reflection-container">
+        <div class="reflection-step"><div class="step-number">01</div><div class="step-content"><h3>Vulnerability</h3><p>Arriving alone, I lacked experience and family support, making me eager to trust strangers as a lifeline.</p></div></div>
+        <div class="reflection-step"><div class="step-number">02</div><div class="step-content"><h3>The Veneer</h3><p>A "friendly" classmate created an emotional dependency, offering a home that looked safe and warm at first.</p></div></div>
+        <div class="reflection-step"><div class="step-number">03</div><div class="step-content"><h3>Unmasking</h3><p>When I decided to leave, the domesticity vanished, replaced by verbal abuse and isolation. The "Cognitive Shock" of betrayal.</p></div></div>
+        <div class="reflection-step"><div class="step-number">04</div><div class="step-content"><h3>The Awakening</h3><p>Losing my savings because I "ignored the change in attitude" to avoid tension. Critical thinking is a survival necessity.</p></div></div>
+    </div>
+</section>
+
+<!-- VISUALS PAGE -->
+<section id="visuals" class="page">
+    <h1 class="glitch-title" style="font-size: 3.5rem;">Media Lab</h1>
+    <div class="section-card" style="text-align: center;">
+        <h2 style="color:var(--hall-light);">Psychological Analysis Video</h2>
+        <div style="aspect-ratio: 16/9; border: 3px solid var(--blood); margin: 20px 0;">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/uMvdcjjvy7Q" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </section>
 
 <footer>
-    &copy; 2025 THE LANDLADY ANALYSIS | STUDENT: LUCY LI | COURSE: ENG4U | TEACHER: MR. BEN
+    &copy; 2025 THE LANDLADY PROJECT | LUCY LI | ENG4U | CULMINATING PROJECT
 </footer>
 
 <script>
     function showPage(pageId) {
         const pages = document.querySelectorAll('.page');
         pages.forEach(p => p.classList.remove('active'));
-
         const target = document.getElementById(pageId);
-        if (target) {
-            target.classList.add('active');
-        }
-
+        if (target) { target.classList.add('active'); }
         const links = document.querySelectorAll('nav a');
         links.forEach(l => l.classList.remove('active-link'));
-        const activeLink = document.getElementById('link-' + pageId);
-        if (activeLink) {
-            activeLink.classList.add('active-link');
-        }
-
+        const activeLink = document.getElementById('nav-' + pageId);
+        if (activeLink) { activeLink.classList.add('active-link'); }
         window.scrollTo(0, 0);
         window.location.hash = pageId;
     }
-
-    window.onload = function() {
-        const currentHash = window.location.hash.replace('#', '');
-        if (currentHash && document.getElementById(currentHash)) {
-            showPage(currentHash);
-        } else {
-            showPage('home');
-        }
+    window.onload = () => {
+        const hash = window.location.hash.replace('#', '');
+        if (hash && document.getElementById(hash)) { showPage(hash); } else { showPage('home'); }
     };
-
-    window.onhashchange = function() {
-        const currentHash = window.location.hash.replace('#', '');
-        if (currentHash) showPage(currentHash);
+    window.onhashchange = () => {
+        const hash = window.location.hash.replace('#', '');
+        if (hash) showPage(hash);
     };
 </script>
 
