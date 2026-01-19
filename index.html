@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -172,20 +171,10 @@ h1.glitch-title {
 .plot-step { background: rgba(10, 14, 23, 0.9); border-left: 4px solid var(--blood); padding: 30px; backdrop-filter: blur(10px); max-width: 600px; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.8); }
 .plot-step:nth-child(even) { align-self: flex-end; border-left: none; border-right: 4px solid var(--blood); }
 
-/* ===========================================
-   REFLECTION TEMPLATE
-=========================================== */
-.reflection-container { display: grid; grid-template-columns: 1fr; gap: 25px; margin-top: 30px; }
-.reflection-step { display: grid; grid-template-columns: 80px 1fr; background: var(--glass); border: 1px solid var(--rust); padding: 30px; border-radius: 8px; transition: 0.3s; position: relative; overflow: hidden; }
-.step-number { font-family: 'Creepster', cursive; font-size: 3rem; color: var(--blood); opacity: 0.5; }
-.step-content h3 { margin-top: 0; color: var(--hall-light); font-size: 1.3rem; }
-.comparison-box { margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-left: 3px solid var(--blood); font-size: 0.95rem; font-style: italic; }
-
 @media screen and (max-width: 768px) {
     .timeline::after { left: 31px; }
     .timeline-item { width: 100%; padding-left: 70px; }
     .right { left: 0%; }
-    .reflection-step { grid-template-columns: 1fr; }
 }
 
 footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); font-size: 0.8rem; color: var(--rust); }
@@ -250,14 +239,20 @@ footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); f
 <section id="characters" class="page">
     <h1 class="glitch-title" style="font-size: 3.5rem;">Character Study</h1>
     <div class="section-card">
-        <h2 style="color:var(--hall-light);">Billy Weaver: The Complacent Innocent</h2>
+        <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
+            <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H7V9H1v2h2v11h18V11h2V9z"/></svg>
+            Billy Weaver: The Complacent Innocent
+        </h2>
         <div class="content-body">
             <p>Billy is a polite boy who has just entered society with a "light step." His tragic flaw is his <strong>lack of social experience</strong>. He believes that friendly behavior equals trustworthiness. Despite noticing anomalies (quiet streets, strange odors), he prioritizes social conformity over survival instincts.</p>
-            <p><strong>Symbolism:</strong> Represents the unsuspecting youth facing a predatory society alone for the first time.</p>
+            <p><strong>Symbolism:</strong> Represents the unsuspecting youth facing a predatory society alone for the first time. His "unchanging" ending emphasizes that refusing to think leads to irreversible consequences.</p>
         </div>
     </div>
     <div class="section-card">
-        <h2 style="color:var(--hall-light);">The Landlady: The Predatory Host</h2>
+        <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
+            <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+            The Landlady: The Predatory Host
+        </h2>
         <div class="content-body">
             <p>She subverts the "villain" stereotype by appearing gentle and maternal. Her pathology is one of <strong>Absolute Control</strong>. She treats human beings as *objets d'art*, freezing them in time through taxidermy to prevent change or departure.</p>
         </div>
@@ -278,11 +273,10 @@ footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); f
     </div>
 </section>
 
-<!-- ANALYSIS PAGE (Expanded) -->
+<!-- ANALYSIS PAGE -->
 <section id="analysis" class="page">
     <h1 class="glitch-title" style="font-size: 3.5rem;">Thematic Depth</h1>
     
-    <!-- 1. CONFLICTS -->
     <div class="section-card">
         <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
             <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
@@ -297,7 +291,6 @@ footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); f
         </div>
     </div>
 
-    <!-- 2. SYMBOLISM -->
     <div class="section-card">
         <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
             <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM5.5 13L2 19h20l-3.5-6h-13z"/></svg>
@@ -321,7 +314,6 @@ footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); f
         </div>
     </div>
 
-    <!-- 3. THEME -->
     <div class="section-card">
         <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
             <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"/></svg>
@@ -334,20 +326,22 @@ footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); f
     </div>
 </section>
 
-<!-- REFLECTION PAGE -->
+<!-- REFLECTION PAGE (Revised to long-form text as requested) -->
 <section id="reflection" class="page">
     <h1 class="glitch-title" style="font-size: 3.5rem;">Personal Connection</h1>
+    
     <div class="section-card">
-        <h2 style="color:var(--hall-light);">Case Study: The Canadian Parallel</h2>
-        <div class="content-body">
-            <p>This story resonated strongly with me because it reminded me of my real-life experiences as an international student. Just like Billy Weaver, who arrived in an unfamiliar city with a "light step" and an optimistic outlook, I too entered Canada with a simple and straightforward perspective on life. When I first arrived, I lacked social experience and was facing society alone for the first time without relatives by my side. In this vulnerable state, I naively believed that as long as someone was friendly and spoke gently, they were trustworthy. This mindset created a direct emotional connection between my journey and Billy’s tragic experience, as we both failed to realize that danger often hides beneath a facade of gentleness.During my early days here, I met a foreign classmate who could speak my language. In a place where everything—from culture to communication—felt alien, her friendliness was a lifeline. I became emotionally dependent on her, and when she offered to let me stay with her host family, I viewed it as a kind and generous help. Initially, the environment was warm and welcoming, mirroring the cozy atmosphere of the landlady's boarding house. We ate meals and watched movies together, and I felt a profound sense of acceptance. However, as soon as I informed them of my plans to transfer schools and move out, the "veneer of hospitality" was instantly stripped away. The hostess began to shout and abuse me in her native language, and my once-friendly classmate isolated me at school. This transition from domestic peace to clinical hostility was my own "cognitive shock."The most devastating moment occurred on the day I moved out, when I discovered that all the cash I had left in my room was missing. Like Billy, I was not completely oblivious to the anomalies in their behavior as things went south, but I chose to ignore the warning signs to avoid making the relationship tense. I prioritized politeness over my own vigilance, and the cost was an irreversible loss. This experience deeply reinforced the themes of "The Landlady": that superficial friendliness does not equal true security. It taught me that in an unfamiliar environment, critical thinking is not a lack of trust, but a necessity for survival. I now understand that real evil does not always appear in a terrifying form, and maintaining a critical mind is the only way to safeguard oneself against the risks hidden in seemingly normal relationships.</p>
-               </div>
-    </div>
-    <div class="reflection-container">
-        <div class="reflection-step"><div class="step-number">01</div><div class="step-content"><h3>Vulnerability</h3><p>Arriving alone, I lacked experience and family support, making me eager to trust strangers as a lifeline.</p></div></div>
-        <div class="reflection-step"><div class="step-number">02</div><div class="step-content"><h3>The Veneer</h3><p>A "friendly" classmate created an emotional dependency, offering a home that looked safe and warm at first.</p></div></div>
-        <div class="reflection-step"><div class="step-number">03</div><div class="step-content"><h3>Unmasking</h3><p>When I decided to leave, the domesticity vanished, replaced by verbal abuse and isolation. The "Cognitive Shock" of betrayal.</p></div></div>
-        <div class="reflection-step"><div class="step-number">04</div><div class="step-content"><h3>The Awakening</h3><p>Losing my savings because I "ignored the change in attitude" to avoid tension. Critical thinking is a survival necessity.</p></div></div>
+        <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
+            <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            My Reflection: The Canadian Parallel
+        </h2>
+        <div class="content-body" style="font-size: 1.15rem; text-align: justify;">
+            <p>This story resonated strongly with me because it reminded me of my real-life experiences as an international student. Just like Billy Weaver, who arrived in an unfamiliar city with a "light step" and an optimistic outlook, I too entered Canada with a simple and straightforward perspective on life. When I first arrived, I lacked social experience and was facing society alone for the first time without relatives by my side. In this vulnerable state, I naively believed that as long as someone was friendly and spoke gently, they were trustworthy. This mindset created a direct emotional connection between my journey and Billy’s tragic experience, as we both failed to realize that danger often hides beneath a facade of gentleness.</p>
+
+            <p>During my early days here, I met a foreign classmate who could speak my language. In a place where everything—from culture to communication—felt alien, her friendliness was a lifeline. I became emotionally dependent on her, and when she offered to let me stay with her host family, I viewed it as a kind and generous help. Initially, the environment was warm and welcoming, mirroring the cozy atmosphere of the landlady's boarding house. We ate meals and watched movies together, and I felt a profound sense of acceptance. However, as soon as I informed them of my plans to transfer schools and move out, the "veneer of hospitality" was instantly stripped away. The hostess began to shout and abuse me in her native language, and my once-friendly classmate isolated me at school. This transition from domestic peace to clinical hostility was my own "cognitive shock."</p>
+
+            <p>The most devastating moment occurred on the day I moved out, when I discovered that all the cash I had left in my room was missing. Like Billy, I was not completely oblivious to the anomalies in their behavior as things went south, but I chose to ignore the warning signs to avoid making the relationship tense. I prioritized politeness over my own vigilance, and the cost was an irreversible loss. This experience deeply reinforced the themes of "The Landlady": that superficial friendliness does not equal true security. It taught me that in an unfamiliar environment, critical thinking is not a lack of trust, but a necessity for survival. I now understand that real evil does not always appear in a terrifying form, and maintaining a critical mind is the only way to safeguard oneself against the risks hidden in seemingly normal relationships.</p>
+        </div>
     </div>
 </section>
 
