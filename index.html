@@ -1,185 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>The Landlady | Lucy Li - ENG4U Culminating Project</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>The Landlady | Lucy Li - ENG4U Culminating Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-<style>
-/* ===========================================
-   THEME & CORE DESIGN
-=========================================== */
-:root {
-    --black: #050505;
-    --blood: #FF3344;
-    --white: #EAEAEA;
-    --midnight: #0a0e17;
-    --glass: rgba(255, 255, 255, 0.05);
-    --rust: #4a5d6a;
-    --hall-light: #44FFFF;
-    --text-muted: #b0b0b0;
-    --nav-height: 70px;
-    --accent-glow: rgba(255, 51, 68, 0.4);
-}
+    <style>
+        /* ===========================================
+           THEME & CORE DESIGN
+        =========================================== */
+        :root {
+            --black: #050505;
+            --blood: #FF3344;
+            --white: #EAEAEA;
+            --midnight: #0a0e17;
+            --glass: rgba(255, 255, 255, 0.05);
+            --rust: #4a5d6a;
+            --hall-light: #44FFFF;
+            --text-muted: #b0b0b0;
+            --nav-height: 70px;
+            --accent-glow: rgba(255, 51, 68, 0.4);
+        }
 
-* { box-sizing: border-box; }
+        * { box-sizing: border-box; }
 
-body {
-    margin: 0;
-    font-family: 'Cinzel', serif;
-    background-color: var(--black);
-    color: var(--white);
-    line-height: 1.8;
-    overflow-x: hidden;
-    background-image: 
-        radial-gradient(circle at 50% 0%, #1a1a2e 0%, transparent 50%),
-        linear-gradient(180deg, #050505 0%, #0a0e17 100%);
-    background-attachment: fixed;
-}
+        body {
+            margin: 0;
+            font-family: 'Cinzel', serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.8;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 0%, #1a1a2e 0%, transparent 50%),
+                linear-gradient(180deg, #050505 0%, #0a0e17 100%);
+            background-attachment: fixed;
+        }
 
-/* ===========================================
-   NAVIGATION
-=========================================== */
-nav {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: var(--nav-height);
-    z-index: 1000;
-    background: rgba(5, 5, 5, 0.98);
-    border-bottom: 2px solid var(--blood);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    backdrop-filter: blur(15px);
-}
+        /* ===========================================
+           PICTURE FORMATTING (NEW)
+        =========================================== */
+        .img-framed {
+            border: 1px solid var(--blood);
+            box-shadow: 0 0 15px var(--accent-glow);
+            border-radius: 4px;
+            transition: 0.4s ease;
+            filter: grayscale(0.3) contrast(1.1);
+        }
+        .img-framed:hover {
+            transform: scale(1.03);
+            filter: grayscale(0) contrast(1.2);
+            box-shadow: 0 0 25px var(--blood);
+        }
+        
+        /* Sizes */
+        .img-small { width: 140px; height: auto; }
+        .img-medium { width: 320px; height: auto; }
+        .img-icon { width: 60px; height: 60px; object-fit: cover; border-radius: 50%; border: 1px solid var(--blood); }
 
-nav a {
-    color: var(--white);
-    text-decoration: none;
-    font-size: 0.8rem;
-    padding: 10px 12px;
-    transition: 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    border-radius: 4px;
-}
+        /* Floating & Layout */
+        .img-float-l { float: left; margin: 0 25px 20px 0; }
+        .img-float-r { float: right; margin: 0 0 20px 25px; }
+        .img-center { display: block; margin: 30px auto; }
+        
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
 
-nav a:hover, nav a.active-link {
-    color: var(--blood);
-    background: rgba(255, 51, 68, 0.1);
-}
+        /* ===========================================
+           NAVIGATION
+        =========================================== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: var(--nav-height);
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.98);
+            border-bottom: 2px solid var(--blood);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            backdrop-filter: blur(15px);
+        }
 
-/* ===========================================
-   PAGE CONTROL
-=========================================== */
-.page {
-    display: none;
-    padding: calc(var(--nav-height) + 30px) 5% 60px;
-    min-height: 100vh;
-    max-width: 1400px;
-    margin: 0 auto;
-    animation: fadeIn 0.6s ease-out forwards;
-}
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 10px 12px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
 
-.page.active { display: block; }
+        nav a:hover, nav a.active-link {
+            color: var(--blood);
+            background: rgba(255, 51, 68, 0.1);
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        /* ===========================================
+           PAGE CONTROL
+        =========================================== */
+        .page {
+            display: none;
+            padding: calc(var(--nav-height) + 30px) 5% 60px;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
 
-/* ===========================================
-   COMPONENTS
-=========================================== */
-.title-area { text-align: center; margin-bottom: 40px; }
+        .page.active { display: block; }
 
-h1.glitch-title {
-    font-family: 'Creepster', cursive;
-    font-size: clamp(3rem, 8vw, 6rem);
-    color: var(--blood);
-    margin: 10px 0;
-    text-shadow: 0 0 25px var(--blood);
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.student-card {
-    display: inline-flex;
-    gap: 20px;
-    padding: 15px 30px;
-    background: var(--glass);
-    border: 1px solid var(--blood);
-    border-radius: 50px;
-    margin-bottom: 30px;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
+        /* ===========================================
+           COMPONENTS
+        =========================================== */
+        .title-area { text-align: center; margin-bottom: 40px; }
 
-.section-card {
-    background: var(--glass);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 40px;
-    margin-bottom: 30px;
-    position: relative;
-    border-radius: 4px;
-    transition: 0.3s;
-}
+        h1.glitch-title {
+            font-family: 'Creepster', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--blood);
+            margin: 10px 0;
+            text-shadow: 0 0 25px var(--blood);
+        }
 
-.content-body {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    color: var(--text-muted);
-}
+        .student-card {
+            display: inline-flex;
+            gap: 20px;
+            padding: 15px 30px;
+            background: var(--glass);
+            border: 1px solid var(--blood);
+            border-radius: 50px;
+            margin-bottom: 30px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
 
-.icon-box {
-    width: 32px; height: 32px;
-    fill: var(--blood);
-    flex-shrink: 0;
-}
+        .section-card {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
 
-/* ===========================================
-   AUTHOR TIMELINE
-=========================================== */
-.timeline { position: relative; max-width: 900px; margin: 50px auto; padding: 20px 0; }
-.timeline::after { content: ''; position: absolute; width: 2px; background: var(--blood); top: 0; bottom: 0; left: 50%; margin-left: -1px; box-shadow: 0 0 10px var(--blood); }
-.timeline-item { padding: 10px 40px; position: relative; background: inherit; width: 50%; }
-.timeline-item::after { content: ''; position: absolute; width: 16px; height: 16px; right: -8px; background-color: var(--black); border: 2px solid var(--blood); top: 15px; border-radius: 50%; z-index: 1; box-shadow: 0 0 10px var(--blood); }
-.left { left: 0; } .right { left: 50%; } .right::after { left: -8px; }
-.timeline-content { padding: 20px; background: var(--glass); border: 1px solid var(--rust); border-radius: 6px; }
-.timeline-content h3 { margin-top: 0; color: var(--hall-light); font-size: 1.2rem; }
-.timeline-icon { width: 24px; height: 24px; fill: var(--blood); margin-bottom: 10px; }
+        .content-body {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+        }
 
-/* ===========================================
-   IMMERSIVE PLOT HALLWAY
-=========================================== */
-.plot-hallway-container {
-    position: relative;
-    width: 100%;
-    min-height: 800px;
-    background: #000;
-    border: 2px solid var(--blood);
-    overflow: hidden;
-    margin: 40px 0;
-}
-.hallway-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; perspective: 1000px; z-index: 1; }
-.hallway-3d { width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; background: linear-gradient(to bottom, #050505, #111); }
-.h-floor { position: absolute; bottom: 0; width: 100%; height: 100%; background: repeating-linear-gradient(90deg, #111 0, #111 50px, #000 50px, #000 100px); transform: rotateX(85deg); transform-origin: bottom; opacity: 0.3; }
-.h-wall-l, .h-wall-r { position: absolute; width: 50%; height: 100%; background: linear-gradient(to bottom, #100 0%, #000 100%); opacity: 0.5; }
-.h-wall-l { transform: rotateY(90deg) translateZ(-500px); left: 0; }
-.h-wall-r { transform: rotateY(-90deg) translateZ(-500px); right: 0; }
-.plot-scroll-area { position: relative; z-index: 10; padding: 50px 10%; display: flex; flex-direction: column; gap: 80px; }
-.plot-step { background: rgba(10, 14, 23, 0.9); border-left: 4px solid var(--blood); padding: 30px; backdrop-filter: blur(10px); max-width: 600px; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.8); }
-.plot-step:nth-child(even) { align-self: flex-end; border-left: none; border-right: 4px solid var(--blood); }
+        .icon-box {
+            width: 32px; height: 32px;
+            fill: var(--blood);
+            flex-shrink: 0;
+        }
 
-@media screen and (max-width: 768px) {
-    .timeline::after { left: 31px; }
-    .timeline-item { width: 100%; padding-left: 70px; }
-    .right { left: 0%; }
-}
+        /* ===========================================
+           AUTHOR TIMELINE
+        =========================================== */
+        .timeline { position: relative; max-width: 900px; margin: 50px auto; padding: 20px 0; }
+        .timeline::after { content: ''; position: absolute; width: 2px; background: var(--blood); top: 0; bottom: 0; left: 50%; margin-left: -1px; box-shadow: 0 0 10px var(--blood); }
+        .timeline-item { padding: 10px 40px; position: relative; background: inherit; width: 50%; }
+        .timeline-item::after { content: ''; position: absolute; width: 16px; height: 16px; right: -8px; background-color: var(--black); border: 2px solid var(--blood); top: 15px; border-radius: 50%; z-index: 1; box-shadow: 0 0 10px var(--blood); }
+        .left { left: 0; } .right { left: 50%; } .right::after { left: -8px; }
+        .timeline-content { padding: 20px; background: var(--glass); border: 1px solid var(--rust); border-radius: 6px; }
+        .timeline-content h3 { margin-top: 0; color: var(--hall-light); font-size: 1.2rem; }
 
-footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); font-size: 0.8rem; color: var(--rust); }
+        /* ===========================================
+           IMMERSIVE PLOT HALLWAY
+        =========================================== */
+        .plot-hallway-container {
+            position: relative;
+            width: 100%;
+            min-height: 800px;
+            background: #000;
+            border: 2px solid var(--blood);
+            overflow: hidden;
+            margin: 40px 0;
+        }
+        .hallway-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; perspective: 1000px; z-index: 1; }
+        .hallway-3d { width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; background: linear-gradient(to bottom, #050505, #111); }
+        .h-floor { position: absolute; bottom: 0; width: 100%; height: 100%; background: repeating-linear-gradient(90deg, #111 0, #111 50px, #000 50px, #000 100px); transform: rotateX(85deg); transform-origin: bottom; opacity: 0.3; }
+        .h-wall-l, .h-wall-r { position: absolute; width: 50%; height: 100%; background: linear-gradient(to bottom, #100 0%, #000 100%); opacity: 0.5; }
+        .h-wall-l { transform: rotateY(90deg) translateZ(-500px); left: 0; }
+        .h-wall-r { transform: rotateY(-90deg) translateZ(-500px); right: 0; }
+        .plot-scroll-area { position: relative; z-index: 10; padding: 50px 10%; display: flex; flex-direction: column; gap: 80px; }
+        .plot-step { background: rgba(10, 14, 23, 0.9); border-left: 4px solid var(--blood); padding: 30px; backdrop-filter: blur(10px); max-width: 600px; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.8); }
+        .plot-step:nth-child(even) { align-self: flex-end; border-left: none; border-right: 4px solid var(--blood); }
 
-</style>
+        @media screen and (max-width: 768px) {
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; }
+            .right { left: 0%; }
+        }
+
+        footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); font-size: 0.8rem; color: var(--rust); }
+
+    </style>
 </head>
 <body>
 
@@ -207,13 +238,18 @@ footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); f
         <p style="color: var(--blood); letter-spacing: 5px; font-weight: bold;">CULMINATING PROJECT: LITERARY DEEP DIVE</p>
     </div>
 
-    <div class="section-card">
+    <div class="section-card clearfix">
         <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
             <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
             Executive Summary
         </h2>
         <div class="content-body">
+            <!-- MEDIUM IMAGE: Victorian Boarding House -->
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800" alt="Victorian House" class="img-framed img-medium img-float-l">
+            
             <p>A seventeen-year-old ambitious businessman, Billy Weaver, travels to Bath, England, seeking a cheap and comfortable place to start his new life. Lured by a deceptive sense of hospitality, he ignores the mounting anomalies—stopped clocks, missing guests, and a strange bitter scent—only to be ensnared in a permanent, horrific collection. This project explores the <strong>fragility of innocence</strong> and the <strong>lethal nature of concealed malice</strong>.</p>
+            
+            <p>Through this digital portal, we dissect the layers of Dahl's narrative, examining how the "comfortable" setting acts as a predator's web. The contrast between British politeness and pathological cruelty serves as a timeless warning for the unsuspecting youth.</p>
         </div>
     </div>
 </section>
@@ -221,10 +257,14 @@ footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); f
 <!-- AUTHOR PAGE -->
 <section id="author" class="page">
     <h1 class="glitch-title" style="font-size: 3.5rem;">The Master of Twists</h1>
-    <div class="section-card">
+    <div class="section-card clearfix">
         <h2 style="color:var(--hall-light);">Biography: Roald Dahl</h2>
         <div class="content-body">
+            <!-- MEDIUM IMAGE: Roald Dahl Portrait -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Roald_Dahl_portrait_by_Carl_Van_Vechten.jpg" alt="Roald Dahl" class="img-framed img-medium img-float-r">
+            
             <p>Roald Dahl was a Norwegian-British author, fighter pilot, and spy. He is best known for blending dark humor with unexpected, often macabre twists in both his children's literature and adult short stories.</p>
+            <p>Dahl's life was as colorful and tragic as his stories. His experiences in boarding schools, his time as a Shell representative in Africa, and his near-fatal plane crash in Libya provided the gritty material for his later fascination with human frailty and the grotesque nature of authority figures.</p>
         </div>
     </div>
     <div class="timeline">
@@ -238,7 +278,10 @@ footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); f
 <!-- CHARACTERS PAGE -->
 <section id="characters" class="page">
     <h1 class="glitch-title" style="font-size: 3.5rem;">Character Study</h1>
-    <div class="section-card">
+    <div class="section-card clearfix">
+        <!-- SMALL IMAGE: Billy Weaver Representation -->
+        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400" alt="Billy Weaver" class="img-framed img-small img-float-l">
+        
         <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
             <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H7V9H1v2h2v11h18V11h2V9z"/></svg>
             Billy Weaver: The Complacent Innocent
@@ -248,13 +291,18 @@ footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); f
             <p><strong>Symbolism:</strong> Represents the unsuspecting youth facing a predatory society alone for the first time. His "unchanging" ending emphasizes that refusing to think leads to irreversible consequences.</p>
         </div>
     </div>
-    <div class="section-card">
+    
+    <div class="section-card clearfix">
+        <!-- SMALL IMAGE: Dark Shadow/Landlady Metaphor -->
+        <img src="https://images.unsplash.com/photo-1544161515-4ae6ce6ca8b8?q=80&w=400" alt="Landlady Shadow" class="img-framed img-small img-float-r">
+        
         <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
             <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
             The Landlady: The Predatory Host
         </h2>
         <div class="content-body">
             <p>She subverts the "villain" stereotype by appearing gentle and maternal. Her pathology is one of <strong>Absolute Control</strong>. She treats human beings as *objets d'art*, freezing them in time through taxidermy to prevent change or departure.</p>
+            <p>Her repetitive speech and forgetfulness mask a calculated, lethal procedure. She is not a person; she is a preservationist of flesh.</p>
         </div>
     </div>
 </section>
@@ -299,49 +347,50 @@ footer { text-align: center; padding: 50px; border-top: 1px solid var(--rust); f
         </h2>
         <div class="content-body">
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
-                <div>
+                <div class="clearfix">
+                    <!-- ICON IMAGE: Taxidermy -->
+                    <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=200" alt="Taxidermy Bird" class="img-icon img-float-l">
                     <h4 style="color:var(--blood);">Taxidermy (The Stuffed Pets)</h4>
                     <p>Symbolizes the Landlady's rejection of life's decay. It represents the "Static State" she desires for all her "pets"—including Billy. It is a symbol of absolute possession and death masquerading as life.</p>
                 </div>
-                <div>
+                <div class="clearfix">
+                    <!-- ICON IMAGE: Tea Cup -->
+                    <img src="https://images.unsplash.com/photo-1544216717-3bbf52512659?q=80&w=200" alt="Tea Cup" class="img-icon img-float-l">
                     <h4 style="color:var(--blood);">The Tea & Almond Scent</h4>
                     <p>A Corruption of British Hospitality. The tea is the instrument of execution, laced with cyanide (the bitter almond smell). It symbolizes how danger hides within the most intimate, safe-seeming customs.</p>
                 </div>
-                <div>
+                <div class="clearfix">
+                    <!-- ICON IMAGE: Ledger -->
+                    <img src="https://images.unsplash.com/photo-1444492417251-9c84a5fa18e0?q=80&w=200" alt="Guestbook" class="img-icon img-float-l">
                     <h4 style="color:var(--blood);">The Guest-Book</h4>
                     <p>A "Ledger of Fate." It proves that Billy's path was predestined. The small number of entries over two years underscores the predatory and selective nature of the Landlady's hobby.</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="section-card">
-        <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
-            <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"/></svg>
-            Themes: Appearance vs. Deception
-        </h2>
-        <div class="content-body">
-            <p>The central theme is that <strong>Danger often lies beneath a safe, friendly, and familiar facade</strong>. Dahl breaks the traditional "villain" stereotype to warn that evil is not always identifiable at a glance.</p>
-            <p><strong>The Risk of Blind Trust:</strong> The story serves as a cautionary tale about the lack of critical thinking. Billy’s refusal to question anomalies—despite noticing them—proves that "Trust without judgment is itself a risk." In a world fraught with hidden threats, complacency is a fatal error with irreversible consequences.</p>
-        </div>
-    </div>
 </section>
 
-<!-- REFLECTION PAGE (Revised to long-form text as requested) -->
+<!-- REFLECTION PAGE -->
 <section id="reflection" class="page">
     <h1 class="glitch-title" style="font-size: 3.5rem;">Personal Connection</h1>
     
-    <div class="section-card">
+    <div class="section-card clearfix">
         <h2 style="color:var(--hall-light); display:flex; align-items:center; gap:15px;">
             <svg class="icon-box" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             My Reflection: The Canadian Parallel
         </h2>
         <div class="content-body" style="font-size: 1.15rem; text-align: justify;">
+            <!-- MEDIUM IMAGE: International Travel/Suitcase -->
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800" alt="International Student" class="img-framed img-medium img-float-l">
+            
             <p>This story resonated strongly with me because it reminded me of my real-life experiences as an international student. Just like Billy Weaver, who arrived in an unfamiliar city with a "light step" and an optimistic outlook, I too entered Canada with a simple and straightforward perspective on life. When I first arrived, I lacked social experience and was facing society alone for the first time without relatives by my side. In this vulnerable state, I naively believed that as long as someone was friendly and spoke gently, they were trustworthy. This mindset created a direct emotional connection between my journey and Billy’s tragic experience, as we both failed to realize that danger often hides beneath a facade of gentleness.</p>
 
-            <p>During my early days here, I met a classmate who could speak my language. In a place where everything—from culture to communication—felt alien, her friendliness was a lifeline. I became emotionally dependent on her, and when she offered to let me stay with her host family, I viewed it as a kind and generous help. Initially, the environment was warm and welcoming, mirroring the cozy atmosphere of the landlady's boarding house. We ate meals and watched movies together, and I felt a profound sense of acceptance. However, as soon as I informed them of my plans to transfer schools and move out, the "veneer of hospitality" was instantly stripped away. The hostess began to shout and abuse me in her native language, and my once-friendly classmate isolated me at school. This transition from domestic peace to clinical hostility was my own "cognitive shock."</p>
+            <p>During my early days here, I met a classmate who could speak my language. In a place where everything—from culture to communication—felt alien, her friendliness was a lifeline. I became emotionally dependent on her, and when she offered to let me stay with her host family, I viewed it as a kind and generous help. Initially, the environment was warm and welcoming, mirroring the cozy atmosphere of the landlady's boarding house. We ate meals and watched movies together, and I felt a profound sense of acceptance. However, as soon as I informed them of my plans to transfer schools and move out, the "veneer of hospitality" was instantly stripped away.</p>
+            
+            <!-- SMALL IMAGE: The Bitter Contrast -->
+            <img src="https://images.unsplash.com/photo-1517677129300-07b130802f46?q=80&w=400" alt="Suitcase and Cold" class="img-framed img-small img-float-r">
 
-            <p>The most devastating moment occurred on the day I moved out, when I discovered that all the cash I had left in my room was missing. Like Billy, I was not completely oblivious to the anomalies in their behavior as things went south, but I chose to ignore the warning signs to avoid making the relationship tense. I prioritized politeness over my own vigilance, and the cost was an irreversible loss. This experience deeply reinforced the themes of "The Landlady": that superficial friendliness does not equal true security. It taught me that in an unfamiliar environment, critical thinking is not a lack of trust, but a necessity for survival. I now understand that real evil does not always appear in a terrifying form, and maintaining a critical mind is the only way to safeguard oneself against the risks hidden in seemingly normal relationships.</p>
+            <p>The hostess began to shout and abuse me in her native language, and my once-friendly classmate isolated me at school. This transition from domestic peace to clinical hostility was my own "cognitive shock." The most devastating moment occurred on the day I moved out, when I discovered that all the cash I had left in my room was missing. Like Billy, I was not completely oblivious to the anomalies in their behavior as things went south, but I chose to ignore the warning signs to avoid making the relationship tense. I prioritized politeness over my own vigilance, and the cost was an irreversible loss. This experience deeply reinforced the themes of "The Landlady": that superficial friendliness does not equal true security. It taught me that in an unfamiliar environment, critical thinking is not a lack of trust, but a necessity for survival.</p>
         </div>
     </div>
 </section>
